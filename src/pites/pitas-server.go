@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net"
+)
 
 const (
 	connHost = "*"
@@ -10,5 +13,13 @@ const (
 
 func main() {
 	fmt.Println("Arrancando P!TAS Server (" + connType +") on " + connHost + ":" + connPort)
-	
+	l, err := net.Listen(connType, connHost+":"+connPort)
+	if err != nil {
+		fmt.Println("Error en escucha:", err.Error())
+	}
+	defer l.Close();
+
+	for {
+
+	}
 }
