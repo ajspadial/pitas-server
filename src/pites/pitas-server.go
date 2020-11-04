@@ -23,18 +23,31 @@ func main() {
 	}
 	defer l.Close();
 
-	for {
-		c, err := l.Accept()
+	
+		c1, err := l.Accept()
 		if err != nil {
 			fmt.Println("Error de conexion:"+err.Error())
 			return
 		}
 		fmt.Println("Cliente conectado")
-
+		
 		fmt.Println("Cliente conectado desde " + c.RemoteAddr().String())
+		c1.Write([]byte("PLAYER1\n"))
 
-		go handleConnection(c)
-	}
+		go handleConnection(c1)
+
+		c2, err := l.Accept()
+		if err != nil {
+			fmt.Println("Error de conexion:"+err.Error())
+			return
+		}
+		fmt.Println("Cliente conectado")
+		
+		fmt.Println("Cliente conectado desde " + c.RemoteAddr().String())
+		c2.Write([]byte("PLAYER2\n"))
+		
+		go handleConnection(c2)
+	
 }
 
 func handleConnection(conn net.Conn) {
