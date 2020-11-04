@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	connHost = "*"
+	connHost = ""
 	connPort = "61745"
 	connType = "tcp"
 )
