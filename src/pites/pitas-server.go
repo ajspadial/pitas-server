@@ -23,7 +23,7 @@ func main() {
 
 	for {
 		c, err := l.Accept()
-		if err := nil {
+		if err != nil {
 			fmt.Println("Error de conexion:"+err.Error())
 			return
 		}
