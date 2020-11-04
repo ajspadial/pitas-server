@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"net"
+	"log"
+	"bufio"
 )
 
 const (
@@ -30,5 +32,23 @@ func main() {
 		fmt.Println("Cliente conectado")
 
 		fmt.Println("Cliente conectado desde " + c.RemoteAddr().String())
+
+		go handleConnection(c)
 	}
+}
+
+func handleConnection(conn net.Conn) {
+	buffer, err := bufio.NewReader(conn).ReadBytes('\n')
+
+	if err != nil {
+		fmt.Println("Cliente ha salido")
+		conn.Close()
+		return
+	}
+
+	log.Println("Mensaje de cliente:", string(buffer[:len(buffer)-1]))
+
+	conn.Write(buffer)
+
+	handleConnection(conn)
 }
