@@ -1,1 +1,1 @@
-web: go run pites-server.go
+web: bin/pites
