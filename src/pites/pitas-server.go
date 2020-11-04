@@ -31,7 +31,7 @@ func main() {
 		}
 		fmt.Println("Cliente conectado")
 		
-		fmt.Println("Cliente conectado desde " + c.RemoteAddr().String())
+		fmt.Println("Cliente conectado desde " + c1.RemoteAddr().String())
 		c1.Write([]byte("PLAYER1\n"))
 
 		go handleConnection(c1)
@@ -43,7 +43,7 @@ func main() {
 		}
 		fmt.Println("Cliente conectado")
 		
-		fmt.Println("Cliente conectado desde " + c.RemoteAddr().String())
+		fmt.Println("Cliente conectado desde " + c2.RemoteAddr().String())
 		c2.Write([]byte("PLAYER2\n"))
 		
 		go handleConnection(c2)
